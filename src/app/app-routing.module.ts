@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: ``, redirectTo: `panel`, pathMatch: `full`}, 
   { path: `panel`, component: PanelComponent},  
   { path: `about`, component: AboutComponent},
-  { path: `addbok`, component: AddBookComponent},
+  { path: `addbook`, component: AddBookComponent},
   { path: `books/:id`, component: EditBookComponent},
   { path: `**`, component: NotFoundComponent }
 ];

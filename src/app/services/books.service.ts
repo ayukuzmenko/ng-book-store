@@ -20,7 +20,7 @@ export class BooksService {
       остаются чуждыми, слегка угрожающими штуками.`,
       link: [
         {
-          type: `pdf`,
+          type: `epub`,
           link: `link`
         },
         {
@@ -38,7 +38,8 @@ export class BooksService {
   }
 
   getBookById(id: string) {
-
+    const book = this.books.find( (book) => book.id === id);
+    return of(book);
   }
 
   addBook(book: Book) {
@@ -46,7 +47,13 @@ export class BooksService {
   }
 
   editBook(book: Book) {
-
+    this.books = this.books.map (item => {
+      if (book.id === item.id) {
+        item = book;
+      }
+      return item;
+    });
+    return of(book);
   }
 
   deleteBookById(id: string) {
