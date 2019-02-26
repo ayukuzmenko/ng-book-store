@@ -6,10 +6,13 @@ import { AddBookComponent } from "./components/add-book/add-book.component";
 import { EditBookComponent } from "./components/edit-book/edit-book.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { PanelComponent } from "./components/panel/panel.component";
+import { LoginComponent } from './components/login/login.component';
+
 
 const routes: Routes = [
   { path: ``, redirectTo: `panel`, pathMatch: `full`}, 
-  { path: `panel`, component: PanelComponent},  
+  { path: `login`, component: LoginComponent},
+  { path: `panel`, component: PanelComponent},
   { path: `about`, component: AboutComponent},
   { path: `addbook`, component: AddBookComponent},
   { path: `books/:id`, component: EditBookComponent},

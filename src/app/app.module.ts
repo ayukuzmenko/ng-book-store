@@ -13,6 +13,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BooksService } from './services/books.service';
 import { IdService } from './services/id.service';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,16 +29,19 @@ import { FormsModule } from '@angular/forms';
     EditBookComponent,
     AboutComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [BooksService, IdService],
+  providers: [BooksService, IdService, AuthService],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }
