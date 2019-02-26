@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
+  userName: string;
 
   constructor(
     private authService: AuthService,
@@ -19,7 +20,9 @@ export class NavbarComponent implements OnInit {
     this.authService.checkAuth().subscribe( auth => {
       if (auth) {
         this.isLogin = true;
+        this.userName = auth.email;
       } else {
+        this.userName = '';
         this.isLogin = false;
       }
     });
