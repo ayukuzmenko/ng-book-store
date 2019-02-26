@@ -22,4 +22,8 @@ export class AuthService {
   logout() {
     return this.angularFireAuth.auth.signOut();
   }
+
+  createUser(email: string, password:string) {
+    return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
 }
