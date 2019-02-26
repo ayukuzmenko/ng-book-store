@@ -34,7 +34,7 @@ export class BooksService {
 
   getBookById(id: string) {
     // const book = this.books.find( (book) => book.id === id);
-    return of(this.book);
+    return of();
   }
 
   addBook(book: Book) {

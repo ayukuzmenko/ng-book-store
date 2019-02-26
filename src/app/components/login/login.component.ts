@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm} from '@angular/forms';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -15,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -30,13 +31,24 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.email, this.password)
-      .then(user => {
+      .then(data => {
         this.router.navigate([`/panel`]);
-        // show message success
+        this.flashMessage.show(`Success login. User ${data.user.email}`, {
+          cssClass: 'alert-success',
+          showCloseBtn: true,
+          closeOnClick: true,
+          timeout: 10000
+        });
+        this.router.navigate(['/panel']);
       })
       .catch(error => {
         // show message error
-        console.log(error);
+        this.flashMessage.show(error.message, {
+          cssClass: 'alert-danger',
+          showCloseBtn: true,
+          closeOnClick: true,
+          timeout: 10000
+        });
       })
   }
 }
