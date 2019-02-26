@@ -8,6 +8,6 @@ export class IdService {
   constructor() { }
 
   generate() {
-    return (Date.now() + Math.random()).toString()
+    return (Date.now() + Math.random()).toString() as string
   }
 }

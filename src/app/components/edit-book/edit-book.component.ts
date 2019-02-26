@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from "@angular/router"
+import { ActivatedRoute, Router} from "@angular/router";
 import { BooksService } from "../../services/books.service";
 import { Book } from 'src/app/models/Book';
 
@@ -31,6 +31,6 @@ export class EditBookComponent implements OnInit {
       if (book) {
         this.router.navigate([`/panel`]);
       }
-    })
+    });
   }
 }

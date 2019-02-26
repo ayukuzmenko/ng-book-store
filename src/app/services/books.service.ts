@@ -43,11 +43,12 @@ export class BooksService {
   }
 
   addBook(book: Book) {
-
+    this.books.unshift(book);
+    return of(book);
   }
 
   editBook(book: Book) {
-    this.books = this.books.map (item => {
+    this.books = this.books.map(item => {
       if (book.id === item.id) {
         item = book;
       }
