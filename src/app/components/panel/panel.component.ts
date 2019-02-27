@@ -10,6 +10,8 @@ import { Book } from 'src/app/models/Book';
 })
 export class PanelComponent implements OnInit {
   public books: Book[];
+  public searchingResult: Book[] = [];
+  public searchText: string;
 
   constructor(
     public booksService: BooksService
@@ -22,4 +24,7 @@ export class PanelComponent implements OnInit {
     });
   }
 
+  searchBook() {
+    this.searchingResult = this.books.filter(book => book.name.toLowerCase().indexOf(this.searchText) !== -1);
+  }
 }
