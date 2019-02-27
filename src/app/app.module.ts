@@ -15,6 +15,7 @@ import { IdService } from './services/id.service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { BasketService } from './services/basket.service'
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -24,6 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { CurrencyComponent } from './components/currency/currency.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { ClientHomeComponent } from './components/client-home/client-home.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { CurrencyComponent } from './components/currency/currency.component';
     LoginComponent,
     RegisterComponent,
     CustomDatePipe,
-    CurrencyComponent
+    CurrencyComponent,
+    BasketComponent,
+    ClientHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,7 @@ import { CurrencyComponent } from './components/currency/currency.component';
     AngularFireAuthModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [BooksService, IdService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [BooksService, IdService, AuthService, BasketService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
