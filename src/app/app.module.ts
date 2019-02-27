@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RegisterComponent } from './components/register/register.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     NotFoundComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,
