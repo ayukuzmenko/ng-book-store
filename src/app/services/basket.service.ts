@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { Book } from '../models/Book';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
   public purchaseList: Book[] = [];
+
+  private clearSource = new BehaviorSubject<boolean>(false);
+  public clearAllItemEvent = this.clearSource.asObservable();
+
+  private deleteSource = new BehaviorSubject(``);
+  public deleteItemEvent = this.deleteSource.asObservable();
 
   constructor() { }
 
@@ -25,5 +32,14 @@ export class BasketService {
         this.purchaseList.splice(i, 1);
       }
     });
+   // уведомить все компоненты
+    this.deleteSource.next(id);
+  }
+
+  clearBasketAll() {
+    // this.purchaseList =[];
+    this.purchaseList.splice(0, this.purchaseList.length);
+     // уведомить все компоненты
+     this.clearSource.next(true);
   }
 }

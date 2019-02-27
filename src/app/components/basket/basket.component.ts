@@ -19,4 +19,13 @@ export class BasketComponent implements OnInit {
       this.basketItem = items;
     });
   }
+
+  clearBasket() {
+    // this.basketItem = [];
+    this.basketService.clearBasketAll();
+  }
+
+  deleteBasketItem(id) {
+    this.basketService.deleteItem(id);
+  }
 }

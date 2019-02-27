@@ -21,13 +21,31 @@ export class ClientHomeComponent implements OnInit {
     this.booksService.getBooks().subscribe((books: Book[]) => {
       this.books = books;
     });
+    this.basketService.clearAllItemEvent.subscribe(status => {
+      if (status) {
+        this.books.forEach(book => {
+          book.isAddBasket = false;
+        })
+      }
+    });
+
+    // subscribe on delete from basket
+    this.basketService.deleteItemEvent.subscribe(id => {
+      if (id) {
+        this.books.forEach(book => {
+          if (id == book.id) {
+            book.isAddBasket = false;
+          }
+        });
+      }
+    });
   }
 
   addBook(book) {
     const newBasketItem = {
       id: book.id,
       price: book.price,
-      mame: book.name
+      name: book.name
     }
 
     this.basketService.addItem(newBasketItem).subscribe( book => {
