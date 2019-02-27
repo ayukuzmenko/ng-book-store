@@ -9,7 +9,7 @@ import { BasketService } from 'src/app/services/basket.service';
   styleUrls: ['./client-home.component.css']
 })
 export class ClientHomeComponent implements OnInit {
-  public books: Book[] = [];
+  public books: Book[] =  [];
   basketItems:any = [];
 
   constructor(
