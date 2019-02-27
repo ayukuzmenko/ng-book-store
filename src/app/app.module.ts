@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { RegisterComponent } from './components/register/register.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { CurrencyComponent } from './components/currency/currency.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    CurrencyComponent
   ],
   imports: [
     BrowserModule,
