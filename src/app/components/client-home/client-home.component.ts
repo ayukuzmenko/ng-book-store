@@ -9,7 +9,8 @@ import { BasketService } from 'src/app/services/basket.service';
   styleUrls: ['./client-home.component.css']
 })
 export class ClientHomeComponent implements OnInit {
-  public books: Book[];
+  public books: Book[] = [];
+  basketItems:any = [];
 
   constructor(
     private booksService: BooksService,
@@ -17,15 +18,33 @@ export class ClientHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // get basket items
+    this.basketService.getBusketItem().subscribe(items => {
+      if (items.length) {
+        // gjkexftv 'ktvtyns bp rjhpbys
+        this.basketItems = items;
+      }
+    });
+
     // get all books
     this.booksService.getBooks().subscribe((books: Book[]) => {
       this.books = books;
+      if (this.basketItems.length) {
+        this.basketItems.forEach(item => {
+          this.books.forEach(book => {
+            if (item.id === book.id) {
+              book.isAddBasket = true;
+            }
+          });
+        });
+      }
     });
+
     this.basketService.clearAllItemEvent.subscribe(status => {
       if (status) {
         this.books.forEach(book => {
           book.isAddBasket = false;
-        })
+        });
       }
     });
 
@@ -39,6 +58,7 @@ export class ClientHomeComponent implements OnInit {
         });
       }
     });
+
   }
 
   addBook(book) {

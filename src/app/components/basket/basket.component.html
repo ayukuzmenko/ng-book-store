@@ -11,7 +11,7 @@
       <i class="fa fa-remove ml-auto text-danger" (click)="deleteBasketItem(item.id)"></i>
     </div>
     <div class="dropdown-item mt-3">
-      <a class="btn btn-primary btn-block">Order</a>
+      <a class="btn btn-primary btn-block" routerLink="/checkout">Order</a>
       <button class="btn btn-danger btn-block" (click)="clearBasket()">Clear all</button>
     </div>
   </div>

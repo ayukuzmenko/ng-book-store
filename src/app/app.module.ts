@@ -27,6 +27,7 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { CurrencyComponent } from './components/currency/currency.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ClientHomeComponent } from './components/client-home/client-home.compon
     CustomDatePipe,
     CurrencyComponent,
     BasketComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    ClientCheckoutComponent
   ],
   imports: [
     BrowserModule,

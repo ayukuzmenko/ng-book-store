@@ -10,9 +10,11 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 
 const routes: Routes = [
-  { path: ``, component: ClientHomeComponent, canActivate: [AuthGuard]}, 
+  { path: ``, component: ClientHomeComponent}, 
+  { path: `checkout`, component: ClientCheckoutComponent}, 
   { path: `login`, component: LoginComponent},
   { path: `register`, component: RegisterComponent},
   { path: `panel`, component: PanelComponent, canActivate: [AuthGuard]},
