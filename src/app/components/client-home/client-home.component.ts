@@ -19,7 +19,7 @@ export class ClientHomeComponent implements OnInit {
 
   ngOnInit() {
     // get basket items
-    this.basketService.getBusketItem().subscribe(items => {
+    this.basketService.getBusketItems().subscribe(items => {
       if (items.length) {
         // gjkexftv 'ktvtyns bp rjhpbys
         this.basketItems = items;
@@ -65,7 +65,9 @@ export class ClientHomeComponent implements OnInit {
     const newBasketItem = {
       id: book.id,
       price: book.price,
-      name: book.name
+      name: book.name,
+      sum: book.price,
+      count: 1
     }
 
     this.basketService.addItem(newBasketItem).subscribe( book => {

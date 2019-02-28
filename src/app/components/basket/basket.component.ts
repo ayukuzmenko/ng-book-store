@@ -15,7 +15,7 @@ export class BasketComponent implements OnInit {
 
   ngOnInit() {
     // get basket
-    this.basketService.getBusketItem().subscribe(items => {
+    this.basketService.getBusketItems().subscribe(items => {
       this.basketItem = items;
     });
   }

@@ -17,7 +17,7 @@ export class BasketService {
 
   constructor() { }
 
-  getBusketItem() {
+  getBusketItems() {
     return of(this.purchaseList);
   }
 
