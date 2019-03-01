@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesService } from 'src/app/services/sales.service';
-import { Order } from 'src/app/models/Order';
+import { Order, CheckoutItem } from 'src/app/models/Order';
 
 @Component({
   selector: 'app-orders',
@@ -21,11 +21,25 @@ export class OrdersComponent implements OnInit {
     });
   }
 
+  changeCount(order, item) {
+    order.isEdit = true;
+    item.sum = item.price * item.count;    
+  }
+
+  deleteItem(item) {
+    
+  }
+
   changeStatus(order){
 
   }
 
   saveChanges(order) {
+    if (!order.isEdit) {
+      order.isEdit = !order.isEdit
+    } else {
+      this.salesService.updateOrder(order);
+    }
 
   }
 }

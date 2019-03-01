@@ -42,7 +42,7 @@
               >
           </li>
         </ul>
-        <button class="btn btn-primary mt-3 bt-3" (click)="order.isEdit = !order.isEdit">{{ order.isEdit ? 'Save' : 'Edit'}}</button>
+        <button class="btn btn-primary mt-3 bt-3" (click)="saveChanges(order)">{{ order.isEdit ? 'Save' : 'Edit'}}</button>
     </div>
     <table class="table">
         <thead>
@@ -65,20 +65,20 @@
                   name="count" 
                   min="1" 
                   max="100"
+                  (change)="changeCount(order, item)"
                 >
               </td>
-              <td>{{ item.sum | currency: "USD"}}</td>
+              <td>{{ item.sum  | currency: "USD"}}</td>
               <td>
-                  <i class="fa fa-remove ml-auto text-danger"></i>
+                  <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem()"></i>
               </td>
             </tr>
         </tbody>    
       </table>
-      <select [(ngModel)]="order.status" name="status" id="" (change)="changeStatus(order)" class="form-control">
+      <select [(ngModel)]="order.status" name="status" id="" (change)="changeStatus(order)" class="form-control mb-3">
         <option value="processing">processing</option>
         <option value="shipping">shipping</option>
         <option value="close">close</option>
       </select>
   </div>
-
 </div>

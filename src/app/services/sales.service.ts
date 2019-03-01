@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Order } from '../models/Order';
+import { map } from 'rxjs-compat/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SalesService {
   public order: Observable<Order>;
 
   constructor(
-    private afs: AngularFirestore,
+    private afs: AngularFirestore
   ) {
     this.ordersCollection = this.afs.collection('orders');
    }
@@ -30,5 +31,9 @@ export class SalesService {
 
   addNewOrder(order) {
     return this.ordersCollection.add(order);
+  }
+
+  updateOrder(order) {
+    console.log(this.ordersCollection)
   }
 }
