@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesService } from 'src/app/services/sales.service';
-import { Order, CheckoutItem } from 'src/app/models/Order';
+import { Order } from 'src/app/models/Order';
+import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-orders',
@@ -11,7 +13,9 @@ export class OrdersComponent implements OnInit {
   orders: Order[];
 
   constructor(
-    private salesService: SalesService
+    private salesService: SalesService,
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -26,19 +30,42 @@ export class OrdersComponent implements OnInit {
     item.sum = item.price * item.count;    
   }
 
-  deleteItem(item) {
-    
+  deleteItem(order, deletedItem) {
+    order.items.forEach((item, index) => {
+      if (item.id === deletedItem.id) {
+        order.items.splice(index, 1);
+      }
+    });
+    this.saveChanges(order);
   }
 
-  changeStatus(order){
-
+  changeStatus(order) {
+    this.saveChanges(order);
   }
 
   saveChanges(order) {
     if (!order.isEdit) {
       order.isEdit = !order.isEdit
     } else {
-      this.salesService.updateOrder(order);
+      this.salesService.updateOrder(order)
+      .then(() => {
+        this.router.navigate([`/panel`]);
+        this.flashMessage.show(`data saved successfully`, {
+          cssClass: 'alert-success',
+          showCloseBtn: true,
+          closeOnClick: true,
+          timeout: 10000
+        });
+      })
+      .catch( error => {
+        this.flashMessage.show(error.message, {
+          cssClass: 'alert-danger',
+          showCloseBtn: true,
+          closeOnClick: true,
+          timeout: 10000
+        });
+      }
+      )
     }
 
   }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm} from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 
@@ -39,7 +38,6 @@ export class LoginComponent implements OnInit {
           closeOnClick: true,
           timeout: 10000
         });
-        this.router.navigate(['/panel']);
       })
       .catch(error => {
         // show message error

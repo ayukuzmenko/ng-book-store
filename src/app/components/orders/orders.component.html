@@ -70,7 +70,7 @@
               </td>
               <td>{{ item.sum  | currency: "USD"}}</td>
               <td>
-                  <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem()"></i>
+                  <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(order, item)"></i>
               </td>
             </tr>
         </tbody>    
