@@ -36,11 +36,11 @@ export class OrdersComponent implements OnInit {
         order.items.splice(index, 1);
       }
     });
-    this.saveChanges(order);
+    order.isEdit = !order.isEdit;
   }
 
   changeStatus(order) {
-    this.saveChanges(order);
+    order.isEdit = !order.isEdit;
   }
 
   saveChanges(order) {
