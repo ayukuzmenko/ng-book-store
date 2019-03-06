@@ -27,7 +27,7 @@
         <span class="text-primary">{{book.date | customDate: "ru-RU": "short"}}</span>
         <p class="card-text">{{book.description}}</p>
         <a href="{{link.link}}" *ngFor="let link of book.links">{{link.type}}</a>
-        <button class="btn btn-danger mt-3">Delete</button>
+        <button class="btn btn-danger mt-3" (click)="onDelete(book.id)">Delete</button>
         <a href="" class="btn btn-primary mt-3" routerLink="/books/{{book.id}}">Edit</a>
       </div>
     </div>
@@ -44,7 +44,7 @@
           <span class="text-primary">{{book.date | customDate: "ru-RU": "short"}}</span>
           <p class="card-text">{{book.description}}</p>
           <a href="{{link.link}}" *ngFor="let link of book.links">{{link.type}}</a>
-          <button class="btn btn-danger mt-3">Delete</button>
+          <button class="btn btn-danger mt-3" (click)="onDelete(book.id)">Delete</button>
           <a href="" class="btn btn-primary mt-3" routerLink="/books/{{book.id}}">Edit</a>
         </div>
       </div>

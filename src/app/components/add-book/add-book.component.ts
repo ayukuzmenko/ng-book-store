@@ -6,6 +6,7 @@ import { LINK_TYPE } from 'src/app/constants';
 import { BooksService } from 'src/app/services/books.service';
 import { IdService } from 'src/app/services/id.service';
 import { Router} from "@angular/router";
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-add-book',
@@ -22,7 +23,8 @@ export class AddBookComponent implements OnInit {
     private fb: FormBuilder,
     private booksService: BooksService,
     private idService: IdService,
-    private router: Router
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class AddBookComponent implements OnInit {
   /** Инициализация формы*/
  initForm(){
     this.bookForm = this.fb.group({
+      price: 0,
       name: [],
       description: [],
       author: [],
@@ -58,7 +61,9 @@ export class AddBookComponent implements OnInit {
       id: id,
       author: this.bookForm.controls[`author`].value,
       description: this.bookForm.controls[`description`].value,
-      link: [
+      date: new Date(),
+      price: this.bookForm.controls[`price`].value,
+      links: [
         {
           type: this.bookForm.controls[`type`].value,
           link: this.bookForm.controls[`link`].value
@@ -67,10 +72,23 @@ export class AddBookComponent implements OnInit {
     };
 
     this.book = Object.assign({}, this.book, newBook);
-    this.booksService.addBook(this.book).subscribe((book: Book) => {
-      if (book) {
-        this.router.navigate([`/panel`]);
-      }
-    });
+    this.booksService.addBook(this.book).then(() => {
+      this.router.navigate([`/panel`]);
+      this.flashMessage.show(`data saved successfully`, {
+        cssClass: 'alert-success',
+        showCloseBtn: true,
+        closeOnClick: true,
+        timeout: 10000
+      });
+    })
+    .catch( error => {
+      this.flashMessage.show(error.message, {
+        cssClass: 'alert-danger',
+        showCloseBtn: true,
+        closeOnClick: true,
+        timeout: 10000
+      });
+    }
+    );
   }
 }

@@ -33,26 +33,24 @@ export class BooksService {
   }
 
   getBookById(id: string) {
-    // const book = this.books.find( (book) => book.id === id);
-    return of();
+    return new Observable((observer) => {
+      this.booksCollection.doc(id).get().subscribe(doc => {
+        observer.next(doc.data());
+      });
+    });
   }
 
   addBook(book: Book) {
-    // this.books.unshift(book);
-    return of(book);
+    return this.booksCollection.add(book);
   }
 
-  editBook(book: Book) {
-    // this.books = this.books.map(item => {
-    //   if (book.id === item.id) {
-    //     item = book;
-    //   }
-    //   return item;
-    // });
-    return of(book);
+  editBook(bookId, book: Book) {
+    delete book.isAddBasket;
+    delete book.id;
+    return this.booksCollection.doc(bookId).update(book);
   }
 
   deleteBookById(id: string) {
-
+    return this.booksCollection.doc(id).delete();
   }
 }
