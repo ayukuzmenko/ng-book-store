@@ -15,6 +15,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   { path: `store`, component: ClientHomeComponent}, 
+  { path: ``, redirectTo: `store`, pathMatch: 'full'}, 
   { path: `checkout`, component: ClientCheckoutComponent},
   { path: `login`, component: LoginComponent},
   { path: `register`, component: RegisterComponent},
