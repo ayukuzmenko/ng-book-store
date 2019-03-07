@@ -57,7 +57,7 @@ export class ClientCheckoutComponent implements OnInit {
     
     this.salesService.addNewOrder(newOrder)
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/store']);
         this.basketService.clearBasketAll();
         this.flashMessage.show(`Your order is completed. We will contact you soon.`, {
           cssClass: 'alert-success',

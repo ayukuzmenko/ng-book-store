@@ -14,7 +14,7 @@ import { ClientCheckoutComponent } from './components/client-checkout/client-che
 import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
-  { path: ``, component: ClientHomeComponent}, 
+  { path: `store`, component: ClientHomeComponent}, 
   { path: `checkout`, component: ClientCheckoutComponent},
   { path: `login`, component: LoginComponent},
   { path: `register`, component: RegisterComponent},
